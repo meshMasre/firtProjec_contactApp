@@ -3,11 +3,11 @@
 using namespace std; 
 
 
-// Address Class 
+// Address class 
 
-// Person Calss 
+// Person calss 
 
-// ContactAPP Class 
+// ContactAPP class 
 
 
 // Main 

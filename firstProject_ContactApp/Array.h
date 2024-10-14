@@ -1,10 +1,10 @@
 #pragma once
 class Array
 {
-	// private : 
+	// private Section : 
 
 
-	// public : 
+	// public Section  : 
 
 
 
