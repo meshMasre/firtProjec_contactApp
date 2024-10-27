@@ -1,10 +1,10 @@
 #pragma once
 class DArray
 {
-	// private : 
+	// private Section : 
 
 
-	// public : 
+	// public Section  : 
 
 
 
