@@ -1,5 +1,5 @@
 #pragma once
-class Array
+class DArray
 {
 	// private : 
 
