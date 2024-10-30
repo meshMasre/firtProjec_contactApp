@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "Array.h"
 #include <iomanip>
 #include <string>
@@ -48,9 +48,9 @@ public:
 	}
 	void printAddress()
 	{
-		cout << getStreetNum() << ", " << getStreetName() << ", " << getTown(); 
-		cout << ", " << getState(); 
-		cout << setw(20) << left; 
+		cout
+		 << getStreetNum() << ", " << getStreetName() << ", " << getTown()
+		 << ", " << getState(); 
 	}
 };
 
@@ -246,15 +246,16 @@ public:
 	void displayContacDetails()
 	{
 	// setw()
-		cout << setw(20) << left << "ID" <<  setw(20) << "FirstName " << setw(20) << "LastName " << setw(20) << "Classification " << setw(20) <<"Favourite ";
-		cout << setw(20) << "Address "<< setw(20) << "Phone Number/s " << "Mails" << endl;
-		cout << setw(20) << left << id; 
-		cout << setw(20) << left <<   getFirstName() ;
-		cout << setw(20) << left <<   getLastName() ;
-		cout << setw(20) << left << getClass();
-		cout << setw(20) << left << getFav(); 
+		cout << setw(20) << setfill(' ') << left << "ID" << setw(20) << "FirstName " << setw(20) << "LastName " << setw(20) << "Classification " << setw(20) << "Favourite ";
+		cout << setw(20) << setfill(' ') << "Address "<< setw(40) << left << "Phone Number/s " << setw(20) << left<< "Mails";
+		cout << "\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n"; 
+		cout << setw(20) << setfill(' ') << left << id;
+		cout << setw(20) << setfill(' ')<< left <<   getFirstName() ;
+		cout << setw(20) << setfill(' ')<< left <<   getLastName() ;
+		cout << setw(20) << setfill(' ')<< left << getClass();
+		cout << setw(20) << setfill(' ')<< left << getFav(); 
 		address->printAddress(); 
-		cout << setw(30) << left; 
+		cout << setw(40) << left; 
 		for (int i = 0; i < phoneSize; i++)
 		{
 			if (i == phoneSize - 1)
@@ -268,7 +269,7 @@ public:
 			}
 			
 		}
-		cout << setw(20) << left;
+		cout << setw(40) << left;
 		for (int i = 0; i < mailSize; i++)
 		{
 			if (i == mailSize - 1)
@@ -289,14 +290,19 @@ public:
 
 int Contact::id = 0; 
 // ContactBook Class 
+class contactBook
+{
+private : 
+	Array<Contact> ContactArray[10];
 
 
+
+};
 // Main 
 int main()
 {
 	Address address; 
-	Contact contact;
-	contact.readContactDetails(); 
+	Contact contact;	contact.readContactDetails(); 
 	contact.displayContacDetails(); 
 
 }
