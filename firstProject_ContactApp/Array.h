@@ -1,51 +1,91 @@
 #pragma once
 #include <iostream>
+#include<algorithm>
+#include<stdexcept>
 using namespace std; 
 
 template<class T >
-class Array
+class DArray
 {
 private:
     size_t capacity;
     size_t size;
-    T* dcArr;
+    T* arr;
 
+
+    // HELPER FUNCTION 
+    
     // Resize function
     void resize(size_t newCapacity)
     {
         T* ptr = new T[newCapacity];
         for (size_t i = 0; i < size; i++)
         {
-            ptr[i] = Array[i];
+            ptr[i] = arr[i];
         }
-        delete[] Array;
-        Array = ptr;
+        delete[] arr;
+        arr = ptr;
         capacity = newCapacity;
     }
 
 public:
-    DcArray(size_t capacity) : size(0), capacity(capacity)
+    DArray(size_t newcapacity = 2) : size(0), capacity(newcapacity)
     {
-        Array = new T[capacity];
+        arr = new T[capacity];
     }
 
-    ~DcArray()
+    ~DArray()
     {
-        delete[] Array;
+        delete[] arr;
+    }
+    // Copy Constructor
+    DArray(const DArray& object2)
+    {
+        size = object2.size;
+        capacity = object2.capacity;
+        arr = new T[capacity];
+        for (size_t i = 0; i <= size; ++i)
+        {
+            arr[i] = object2.arr[i];
+        }
+    }
+    // Assignment Operator 
+    DArray& operator=(const DArray& object2)
+    {
+        if (*this == object2)
+            return *this;
+        delete[] arr;
+        size = object2.size;
+        capacity = object2.capacity;
+        arr = new T[capacity];
+        for (size_t i = 0; i <= size; ++i)
+        {
+            arr[i] = object2.arr[i];
+        }
+        return (*this);
+    }
+    // OverlOading Operator 
+    T& operator[](size_t index)
+    {
+        if (size > 0 && index < size)
+        {
+            return arr[index];
+        }
+        throw out_of_range("Index out of range");
     }
 
     // Append function
-    void append(T element)
+    void append(T newelement)
     {
         if (size >= capacity)
         {
             resize(2 * capacity);
         }
-        Array[size++] = element;
+        arr[++size] = newelement;
     }
 
     // Insert function
-    void insert(size_t index, T newelement)
+    void insert(T newelement , size_t index )
     {
         if (index >= size)
         {
@@ -60,21 +100,12 @@ public:
 
         for (size_t i = size; i > index; i--)
         {
-            Array[i] = dcArr[i - 1];
+            arr[i] = arr[i - 1];
         }
-        Array[index] = element;
+        arr[index] = newelement;
         size++;
     }
-    // Update function
-    void update(size_t index, T newElement)
-    {
-        if (index >= size)
-        {
-            cout << "Index Out Of Range\n"; 
-        }
-        Array[index] = newElement;
-    }
-
+    
 
     // Remove last element
     void remove()
@@ -90,7 +121,7 @@ public:
 
         for (size_t i = index; i < size - 1; i++)
         {
-            Array[i] = dcArr[i + 1];
+            arr[i] = arr[i + 1];
         }
         size--;
         if (size <= capacity / 4)
@@ -106,6 +137,15 @@ public:
         resize(2);
     }
 
+    // GEtSize 
+    size_t getSize()
+    {
+        return size; 
+    }
+
+
+    // ifFave 
+    
     // Reverse the array
     void reverse()
     {
@@ -113,13 +153,15 @@ public:
 
         while (start < end)
         {
-            T temp = Array[start];
-            Array[start] = Array[end];
-            Array[end] = temp;
+            T temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
             start++;
             end--;
         }
     }
+
+    
 
 
 };
